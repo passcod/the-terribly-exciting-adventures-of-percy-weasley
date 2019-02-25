@@ -1,0 +1,29 @@
+{
+  "name": "the-terribly-exciting-adventures-of-percy-weasley",
+  "version": "0.1.0",
+  "description": "A Percy Weasley fanfiction",
+  "main": "chapters/01.md",
+  "scripts": {
+    "prebuild": "mkdir -p build; rm build/* || echo ok",
+    "build": "cd chapters; ls *.md | xargs -n1 -i% sh -c 'echo %; tract % vars/* | remark -q -u abbr -u textr=plugins:[\\\"typographic-base\\\"] -u html > ../build/%.html'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/passcod/the-terribly-exciting-adventures-of-percy-weasley"
+  },
+  "keywords": [
+    "fanfic",
+    "harry-potter",
+    "writing"
+  ],
+  "author": "Félix Saparelli <felix@passcod.name> (https://passcod.name)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "remark-abbr": "^1.1.2",
+    "remark-cli": "^5.0.0",
+    "remark-html": "^7.0.0",
+    "remark-textr": "^3.0.1",
+    "tract": "^1.0.1",
+    "typographic-base": "^1.0.4"
+  }
+}
