@@ -5,7 +5,7 @@
   "main": "chapters/01.md",
   "scripts": {
     "prebuild": "mkdir -p build; rm build/* || echo ok",
-    "build": "cd chapters; ls *.md | xargs -n1 -i% sh -c 'echo %; tract % vars/* | remark -q -u abbr -u textr=plugins:[\\\"typographic-base\\\"] -u html > ../build/%.html'"
+    "build": "cd chapters; ls *.md | xargs -n1 -P4 -i% sh -c 'echo %; remark % > ../build/%.html'"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,26 @@
   "license": "UNLICENSED",
   "dependencies": {
     "remark-abbr": "^1.1.2",
-    "remark-cli": "^5.0.0",
-    "remark-html": "^7.0.0",
+    "remark-cli": "^6.0.1",
+    "remark-html": "^9.0.0",
     "remark-textr": "^3.0.1",
-    "tract": "^1.0.1",
     "typographic-base": "^1.0.4"
+  },
+  "remarkConfig": {
+    "plugins": [
+      ["parse", {
+        "footnotes": true
+      }],
+      "abbr",
+      [
+        "textr",
+        {
+          "plugins": [
+            "typographic-base"
+          ]
+        }
+      ],
+      "html"
+    ]
   }
 }
