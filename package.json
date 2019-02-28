@@ -5,7 +5,8 @@
   "main": "chapters/01.md",
   "scripts": {
     "prebuild": "mkdir -p build; rm build/* || echo ok",
-    "build": "cd chapters; ls *.md | xargs -n1 -P4 -i% sh -c 'echo %; remark % > ../build/%.html'"
+    "build": "cd chapters; ls *.md | xargs -n1 -P4 -i% sh -c 'remark % >> ../build/%.html'",
+    "postbuild": "[[ -z \"$local\" ]] && exit; cd build; ls *.html | xargs -n1 -P8 -i% sh -c 'mv % .%; cp ../head.html %; cat .% >> %; rm .%'"
   },
   "repository": {
     "type": "git",
